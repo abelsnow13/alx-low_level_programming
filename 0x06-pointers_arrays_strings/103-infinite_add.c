@@ -50,5 +50,29 @@ char *add_strings(char *n1, char *n2, char *r, int r_index)
 		return (0);
 
 	return (r + r_index + 1);
+}
+/**
+ * infinite_add - add the number stored on two strings
+ * @n1: The string containing the first number
+ * @n2: - Second string
+ * @r: string
+ * @size_r: the current index of the buffer
+ *
+ * Return: Always success
+ */
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+int index, n1_len = 0, n2_len = 0;
 
+for (index = 0; *(n1 + index); index++)
+n1_len++;
+for (index = 0; *(n2 + index); index++)
+n2_len++;
+if (size_r <= n1_len + 1 || size_r <= n2_len + 1)
+return (0);
+
+n1 += n1_len - 1;
+n2 += n2_len - 1;
+*(r + size_r) = '\0';
+return (add_strings(n1, n2, r, --size_r));
 }
